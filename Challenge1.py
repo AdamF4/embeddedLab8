@@ -11,7 +11,7 @@ sense = SenseHat()
 clear_leds(sense)
 # Insert code HERE ##
 # Commands for image
-R = [255, 0, 0]  # Red
+R = [255, 255, 0]  # Red
 G = [0, 255, 0]  # green
 B = [0, 0, 255]  # blue
 O = [0, 0, 0]  # black

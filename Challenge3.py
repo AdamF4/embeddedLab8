@@ -1,4 +1,4 @@
-from sense_hat import SenseHat
+from sense_hat import SenseHat, ACTION_RELEASED
 import numpy as np
 from time import sleep
 import random
@@ -49,36 +49,38 @@ sense.set_pixel(goal_pixel[0], goal_pixel[1], 0, 255, 0)
 alive = True  # flag to check where the moving pixel is located
 while alive:
     for event in sense.stick.get_events():
+        if event.action != ACTION_RELEASED:
+            if event.direction == 'up':
+                sense.set_pixel(x, y, 0, 0, 0)
+                y -= 1
+                x, y = check_boundary(x, y)
+                sense.set_pixel(x, y, white)
 
-        if event.direction == 'up':
-            sense.set_pixel(x, y, 0, 0, 0)
-        y -= 1
-        x, y = check_boundary(x, y)
-        sense.set_pixel(x, y, white)
+            if event.direction == 'down':
+                sense.set_pixel(x, y, 0, 0, 0)
+                y += 1
+                x, y = check_boundary(x, y)
+                sense.set_pixel(x, y, white)
 
-        if event.direction == 'down':
-            sense.set_pixel(x, y, 0, 0, 0)
-        y += 1
-        x, y = check_boundary(x, y)
-        sense.set_pixel(x, y, white)
+            if event.direction == 'left':
+                sense.set_pixel(x, y, 0, 0, 0)
+                x -= 1
+                x, y = check_boundary(x, y)
+                sense.set_pixel(x, y, white)
 
-        if event.direction == 'left':
-            sense.set_pixel(x, y, 0, 0, 0)
-        x -= 1
-        x, y = check_boundary(x, y)
-        sense.set_pixel(x, y, white)
+            if event.direction == 'right':
+                sense.set_pixel(x, y, 0, 0, 0)
+                x += 1
+                x, y = check_boundary(x, y)
+                sense.set_pixel(x, y, white)
 
-        if event.direction == 'right':
-            sense.set_pixel(x, y, 0, 0, 0)
-        x += 1
-        x, y = check_boundary(x, y)
-        sense.set_pixel(x, y, white)
+            
 
-        if (x, y) in dangerous_coord:
-            sense.show_message('Game over')
-        print('Game Over')
-        alive = False  # Game is over, because you lost
-
-        if (x, y) == (goal_pixel[0], goal_pixel[1]):
-            sense.show_message('Victory')
-        alive = False  # Game is over, because you won.
+            if (x, y) == (goal_pixel[0], goal_pixel[1]):
+                sense.show_message('Victory')
+                alive = False  # Game is over, because you won.
+            
+            if (x, y) in dangerous_coord:
+                sense.show_message('Game over')
+                print('Game Over')
+                alive = False  # Game is over, because you lost

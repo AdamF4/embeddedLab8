@@ -5,7 +5,7 @@ import numpy as np
 
 
 def load_image(values,sense):
-    # sense.setPixels(values)
+    # sense.set_pixels(values)
     sense.load_image(path_to_file)
 
 
