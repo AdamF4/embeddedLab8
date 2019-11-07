@@ -6,7 +6,7 @@ import numpy as np
 
 def load_image(values,sense):
     # sense.setPixels(values)
-    sense.loadImage(path_to_file)
+    sense.load_image(path_to_file)
 
 
 def clear_leds(sense):

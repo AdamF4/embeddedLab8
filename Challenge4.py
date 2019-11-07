@@ -26,7 +26,7 @@ timeOut = {
     "XTREME": 10,
 }
 
-if accl > thres["XTRREME"]:
+if accl > thres["XTREME"]:
     state = "XTREME"
     lastDetect = time.time()
 

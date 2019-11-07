@@ -1,7 +1,7 @@
 from sense_hat import SenseHat
 import numpy as np
 from time import sleep
-import random.py
+import random
 
 
 def add_dangerous_pixels(sense, nr_dang_pix):
